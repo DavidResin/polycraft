@@ -11,7 +11,7 @@ As hundreds of players go all over the place and generate useless chunks that ta
 As the map was growing in size, we needed a way for non-OP players to consult the huge map on the hub wall without the ability to fly. This uses a system that constantly places a platform under the feet of the player, with the ability to raise or lower it by jumping or crouching respectively. A lot of edge cases need to be accounted for when the player goes to the edge of the room and this script allowed us to quickly tweak the system without writing tons of commands by hand.
 
 ## Layout
-While working on the layout of the Unil campus, it quickly became clear that tracing out all those paths by hand was a needlessly long undertaking. This system, by far the most complex made for this project, allows us to place blocks on the map simply by clicking their corresponsing spot on the [Unil plan website](www.planete.unil.ch/plan). It uses multiple components :
+While working on the layout of the Unil campus, it quickly became clear that tracing out all those paths by hand was a needlessly long undertaking. This system, by far the most complex made for this project, allows us to place blocks on the map simply by clicking their corresponding location on the [Unil plan website](www.planete.unil.ch/plan). It comprises multiple components :
 * The Javascript component, which is an extension of the position script, sends the coordinates to a local Python server for each click.
 * The Python component, which receives the coordinates, encapsulates them in a command which is sent to the server vis SSH.  
 
