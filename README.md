@@ -26,5 +26,5 @@ Early on in the project, it was acknowledged that more precision in the building
 ## Terraform
 The campuses cover multiple square kilometers of land, which would be a dreadful task to shape by hand. Through legal means, we got our hands on official altimetric records of the region (not provided here for obvious reasons) and made a script that would convert those to usable block heights through linear interpolation and place blocks in the world. This allowed us to completely terraform the map (nearly 8 million blocks in surface) in a matter of hours. This must be run on a local server that is launched by Python as there are too many commands to execute for it to be done efficiently through command blocks.
 
-© 2020 David Resin
+© 2020 David Resin  
 This project is freely available under a GNU GPLv3 license.
