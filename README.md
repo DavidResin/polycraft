@@ -21,7 +21,9 @@ The server then processes the SSH message and writes the command in the Minecraf
 The fill up functionality of our pixel art system requires multiple commands to clone a single block to a 128x128 area. This script creates an encapsulated command that does all the job, to be executed in-game on a command block.
 
 ## Position
-To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.
+To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.  
+  
+Credit goes to Soraefir for the JavaScript work.
 
 ## Shift
 Early on in the project, it was acknowledged that more precision in the building layouts was needed. It was therefore decided that we would need to shift most built chunks around relative to each other to make everything match proportions. The script creates a long command that moves plenty of chunks around, to be executed in-game on a command block.
