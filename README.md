@@ -13,7 +13,7 @@ As the map was growing in size, we needed a way for non-OP players to consult th
 ## Layout
 While working on the layout of the Unil campus, it quickly became clear that tracing out all those paths by hand was a needlessly long undertaking. This system, by far the most complex made for this project, allows us to place blocks on the map simply by clicking their corresponding location on the [Unil plan website](www.planete.unil.ch/plan). It comprises multiple components :
 * The Javascript component, which is an extension of the position script, sends the coordinates to a local Python server for each click.
-* The Python component, which receives the coordinates, encapsulates them in a command which is sent to the server vis SSH.  
+* The Python component, which receives the coordinates, encapsulates them in a command which is sent to the server via SSH.  
 
 The server then processes the SSH message and writes the command in the Minecraft server's CLI which spawns a block in the world.
 
