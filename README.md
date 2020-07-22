@@ -8,7 +8,7 @@ This repository is a collection of all the tools that were coded to help build t
 As hundreds of players go all over the place and generate useless chunks that take up growing space with daily backups, this script was made to limit the growth of the map files by visualizing what chunk file was necessary or not.
 
 ## Hole
-An modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
+A modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
 
 ## Hub
 As the map was growing in size, we needed a way for non-OP players to consult the huge map on the hub wall without the ability to fly. This uses a system that constantly places a platform under the feet of the player, with the ability to raise or lower it by jumping or crouching respectively. A lot of edge cases need to be accounted for when the player goes to the edge of the room and this script allowed us to quickly tweak the system without writing tons of commands by hand.
