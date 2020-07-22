@@ -7,15 +7,18 @@ This repository is a collection of all the tools that were coded to help build t
 ## Chunks
 As hundreds of players go all over the place and generate useless chunks that take up growing space with daily backups, this script was made to limit the growth of the map files by visualizing what chunk file was necessary or not.
 
+## Hole
+An modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
+
 ## Hub
 As the map was growing in size, we needed a way for non-OP players to consult the huge map on the hub wall without the ability to fly. This uses a system that constantly places a platform under the feet of the player, with the ability to raise or lower it by jumping or crouching respectively. A lot of edge cases need to be accounted for when the player goes to the edge of the room and this script allowed us to quickly tweak the system without writing tons of commands by hand.
 
 ## Layout
 While working on the layout of the Unil campus, it quickly became clear that tracing out all those paths by hand was a needlessly long undertaking. This system, by far the most complex made for this project, allows us to place blocks on the map by simply clicking their corresponding location on the [Unil plan website](www.planete.unil.ch/plan). It comprises multiple components :
 * The Javascript component, which is an extension of the position script, sends the coordinates to a local Python server for each click.
-* The Python component, which receives the coordinates, encapsulates them in a command which is sent to the hosting server via SSH.  
+* The Python component, which receives the coordinates, buffers them and encapsulates them in a command which is sent to the hosting server via SSH every five seconds (sending one SSH message per command would make the spawning of the blocks very long, whereas this solution means the results are nearly instantaneous).  
 
-The hosting server then processes the SSH message and writes the command in the Minecraft server's CLI which spawns a block in the world.
+The hosting server then processes the SSH message and writes the contained commands in the Minecraft server's CLI which spawns the blocks in the world.
 
 ## Pixel Art
 The fill up functionality of our pixel art system requires multiple commands to clone a single block to a 128x128 area. This script creates an encapsulated command that does all the job, to be executed in-game on a command block.
