@@ -24,15 +24,18 @@ The hosting server then processes the SSH message and writes the contained comma
 The fill up functionality of our pixel art system requires multiple commands to clone a single block to a 128x128 area. This script creates an encapsulated command that does all the job, to be executed in-game on a command block.
 
 ## Position
-To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files accomplish the same action but can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.  
-  
-Credit goes to Soraefir for the JavaScript component.
+To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files accomplish the same action but can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.
 
 ## Shift
 Early on in the project, it was acknowledged that more precision in the building layouts was needed. It was therefore decided that we would need to shift most built chunks around relative to each other to make everything match proportions. The script creates a long command that moves plenty of chunks around based on a set of distances, to be executed in-game on a command block.
 
 ## Terraform
 The campuses cover multiple square kilometers of land, which would be a dreadful task to carve by hand. Through legal means, we got our hands on official altimetric records of the region (not provided here for obvious reasons) and made a script that would convert those to usable block heights through linear interpolation and place blocks in the world. This allowed us to completely terraform the map (nearly 8 million blocks in surface) in a matter of hours. This must be run on a local server that is launched by Python as there are too many commands to execute for it to be done efficiently through command blocks.
+
+# Credits
+Python : myself  
+JavaScript : Soraefir and myself  
+Bash : Miomjon  
 
 © 2020 David Resin  
 This project is freely available under a GNU GPLv3 license.
