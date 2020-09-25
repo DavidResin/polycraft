@@ -1,8 +1,8 @@
-# Welcome to Polycraft Tools
+# Welcome to PolyCraft Tools
 
 To gain access to the server, please head over to [our Discord](https://discord.gg/zYtZuue).
 
-This repository is a collection of all the tools that were coded to help build the EPFL and Unil campus recreation in Minecraft. Those tools are listed and described here. Please note that most of the code is not commented, but the descriptions provided here should give enough of a clue as to how they work.
+This repository is a collection of all the tools that were coded to help build PolyCraft, the EPFL and Unil campus recreation in Minecraft. Those tools are listed and described here. Please note that most of the code is not commented, but the descriptions provided here should give enough of a clue as to how they work.
 
 ## Chunks
 As hundreds of players go all over the place and generate useless chunks that take up growing space with daily backups, this script was made to limit the growth of the map files by visualizing what chunk file was necessary or not.
