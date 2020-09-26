@@ -36,7 +36,7 @@ The campuses cover multiple square kilometers of land, which would be a dreadful
 To facilitate the use of the different tools we coded for builders (preset teleporters, togglable player effects, ...), we wrote an in-game toolbook where players can trigger various actions by clicking text. The book is generated through a complex `give` command triggered in a command block.
 
 # Credits
-Python : myself  
+Python and MC commands : myself  
 JavaScript : Soraefir and myself  
 Bash : Miomjon  
 
