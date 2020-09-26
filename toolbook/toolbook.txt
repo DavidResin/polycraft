@@ -1,0 +1,71 @@
+/give @a[tag=book,tag=!book_x] written_book{pages:
+	['
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Table of Contents","italic":true},{"text":"\\n","color":"reset"},
+			{"text":"(Click to access)","color":"gray"},
+			{"text":"\\n\\n# Teleportation\\n  ","color":"reset"},
+			{"text":"- To Hub","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 1"}},{"text":"\\n"},{"text":"  ","color":"red"},
+			{"text":"- EPFL locations","color":"red","clickEvent":{"action":"change_page","value":2}},{"text":"\\n","color":"reset"},{"text":"  ","color":"blue"},
+			{"text":"- Unil locations","color":"blue","clickEvent":{"action":"change_page","value":3}},{"text":"\\n  ","color":"reset"},
+			{"text":"- Other locations","clickEvent":{"action":"change_page","value":"4"}},{"text":"\\n\\n"},{"text":"# Effects","clickEvent":{"action":"change_page","value":5}},{"text":"\\n"},{"text":"# OP-only Items","color":"dark_purple","clickEvent":{"action":"change_page","value":6}}
+		]','
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Teleportation EPFL","italic":true,"color":"red"},{"text":"\\n","color":"reset"},
+			{"text":"(Click to teleport)","color":"gray"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Avenue Forel","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 9"}},{"text":"\\n"},
+			{"text":"Avenue Piccard","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 8"}},{"text":"\\n"},
+			{"text":"Diagonale","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 5"}},{"text":"\\n"},
+			{"text":"M1 Bassenges","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 2"}},{"text":"\\n"},
+			{"text":"M1 EPFL","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 3"}},{"text":"\\n"},
+			{"text":"Parc de l\'Innovation","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 4"}},{"text":"\\n"},
+			{"text":"Place de l\'Esplanade","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 6"}},{"text":"\\n"},
+			{"text":"Place Cosandey","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 7"}}
+		]','
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Teleportation Unil","italic":true,"color":"blue"},{"text":"\\n","color":"reset"},
+			{"text":"(Click to teleport)","color":"gray"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Allée de Dorigny","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 15"}},{"text":"\\n"},
+			{"text":"Centre Sportif","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 12"}},{"text":"\\n"},
+			{"text":"M1 Unil Chamberonne","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 17"}},{"text":"\\n"},
+			{"text":"M1 Unil Mouline","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 14"}},{"text":"\\n"},
+			{"text":"M1 Unil Sorge","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 10"}},{"text":"\\n"},
+			{"text":"Unil Quartier Centre","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 13"}},{"text":"\\n"},
+			{"text":"Unil Qua. Chamberonne","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 16"}},{"text":"\\n"},
+			{"text":"Unil Quartier Sorge","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 11"}}
+		]','
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Other Teleports","italic":true},{"text":"\\n","color":"reset"},
+			{"text":"(Click to teleport)\\n\\n","color":"gray"},
+			{"text":"Access to those is restricted to certain players upon request!","italic":true,"color":"gray"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Pixel Art Area","clickEvent":{"action":"run_command","value":"/trigger tp_dest set -1"}},{"text":"\\n"},
+			{"text":"Alternate Builds","clickEvent":{"action":"run_command","value":"/trigger tp_dest set -2"}},{"text":"\\n\\n "}
+		]','
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"Effects","italic":true},{"text":"\\n","color":"reset"},
+			{"text":"(Click to toggle)\\n\\n","color":"gray"},
+			{"text":"- Night Vision","clickEvent":{"action":"run_command","value":"/trigger eff_nvis_x set 1"}},{"text":"\\n"},
+			{"text":"- Super Speed","clickEvent":{"action":"run_command","value":"/trigger eff_spd_x set 1"}},{"text":"\\n"},
+			{"text":"- Glowing","clickEvent":{"action":"run_command","value":"/trigger eff_glow_x set 1"}}
+		]','
+		["",
+			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
+			{"text":"OP-only Items","italic":true},{"text":"\\n","color":"reset"},
+			{"text":"(Click to get one)","color":"gray"},{"text":"\\n\\n","color":"reset"},
+			{"text":"- Command Block","color":"gold","clickEvent":{"action":"run_command","value":"/give @s minecraft:command_block"}},{"text":"\\n","color":"reset"},
+			{"text":"- Barrier Block","color":"red","clickEvent":{"action":"run_command","value":"/give @s minecraft:barrier"}},{"text":"\\n","color":"reset"},
+			{"text":"- Debug Stick","color":"light_purple","clickEvent":{"action":"run_command","value":"/give @s minecraft:debug_stick"}}
+		]'
+	],
+	name:"toolbook",
+	title:"PolyCraft Tool Book",
+	author:MCRaisin,
+	display:{
+		Lore:["All useful commands in one nifty package."],
+		Name:'[{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" Tool Book","bold":true}]'
+	}
+}

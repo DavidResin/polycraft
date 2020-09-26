@@ -34,5 +34,8 @@ Early on in the project, it was acknowledged that more precision in the building
 ## Terraform
 The campuses cover multiple square kilometers of land, which would be a dreadful task to carve by hand. Through legal means, we got our hands on official altimetric records of the region (not provided here for obvious reasons) and made a script that would convert those to usable block heights through linear interpolation and place blocks in the world. This allowed us to completely terraform the map (nearly 8 million blocks in surface) in a matter of hours. This must be run on a local server that is launched by Python as there are too many commands to execute for it to be done efficiently through command blocks.
 
+## Toolbook
+To facilitate the use of the different tools we coded for builders (preset teleporters, togglable player effects, ...), we wrote an in-game toolbook where players can trigger various actions by clicking text. The book is generated through a complex `give` command triggered in a command block.
+
 © 2020 David Resin  
 This project is freely available under a GNU GPLv3 license.

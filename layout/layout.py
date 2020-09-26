@@ -3,7 +3,7 @@ import os, ssl, signal
 from io import BytesIO
 from ast import literal_eval
 
-template = "/usr/bin/screen -p 0 -S mc-server -X eval 'stuff \"'\"'\"fill {0} {1} {2} {0} {1} {2} light_blue_concrete_powder keep\"'\"'\"\\015'; "
+template = "/usr/bin/screen -p 0 -S mc-server -X eval 'stuff \"'\"'\"execute at MCRaisin run fill {0} {1} {2} {0} {1} {2} light_blue_concrete_powder keep\"'\"'\"\\015'; "
 prefix = "ssh mc-server@owo.miomjon.ch \""
 cmd = prefix
 count = 0
@@ -29,7 +29,7 @@ class LayoutHTTPRequestHandler(BaseHTTPRequestHandler):
 		d = literal_eval(body.decode('utf-8'))
 		x = int(d["x"])
 		z = int(d["z"])
-		y = 100
+		y = "~" #100
 
 		cmd += template.format(x, y, z)
 		count += 1
