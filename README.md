@@ -1,14 +1,14 @@
-# Welcome to Polycraft Tools
+# Welcome to PolyCraft Tools
 
 To gain access to the server, please head over to [our Discord](https://discord.gg/zYtZuue).
 
-This repository is a collection of all the tools that were coded to help build the EPFL and Unil campus recreation in Minecraft. Those tools are listed and described here. Please note that most of the code is not commented, but the descriptions provided here should give enough of a clue as to how they work.
+This repository is a collection of all the tools that were coded to help build PolyCraft, the EPFL and Unil campus recreation in Minecraft. Those tools are listed and described here. Please note that most of the code is not commented, but the descriptions provided here should give enough of a clue as to how they work.
 
 ## Chunks
 As hundreds of players go all over the place and generate useless chunks that take up growing space with daily backups, this script was made to limit the growth of the map files by visualizing what chunk file was necessary or not.
 
 ## Hole
-An modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
+A modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
 
 ## Hub
 As the map was growing in size, we needed a way for non-OP players to consult the huge map on the hub wall without the ability to fly. This uses a system that constantly places a platform under the feet of the player, with the ability to raise or lower it by jumping or crouching respectively. A lot of edge cases need to be accounted for when the player goes to the edge of the room and this script allowed us to quickly tweak the system without writing tons of commands by hand.
@@ -24,9 +24,7 @@ The hosting server then processes the SSH message and writes the contained comma
 The fill up functionality of our pixel art system requires multiple commands to clone a single block to a 128x128 area. This script creates an encapsulated command that does all the job, to be executed in-game on a command block.
 
 ## Position
-To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files accomplish the same action but can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.  
-  
-Credit goes to Soraefir for the JavaScript component.
+To speed up the process of finding the position of real-world objects in the Minecraft world, this converter was created. The Python script does a simple conversion, while the JavaScript code files accomplish the same action but can be pasted in the console on the official map websites of [EPFL](www.map.epfl.ch) and [Unil](www.planete.unil.ch/plan) respectively and will print out Minecraft coordinates everytime the user clicks the map.
 
 ## Shift
 Early on in the project, it was acknowledged that more precision in the building layouts was needed. It was therefore decided that we would need to shift most built chunks around relative to each other to make everything match proportions. The script creates a long command that moves plenty of chunks around based on a set of distances, to be executed in-game on a command block.
@@ -36,6 +34,11 @@ The campuses cover multiple square kilometers of land, which would be a dreadful
 
 ## Toolbook
 To facilitate the use of the different tools we coded for builders (preset teleporters, togglable player effects, ...), we wrote an in-game toolbook where players can trigger various actions by clicking text. The book is generated through a complex `give` command triggered in a command block.
+
+# Credits
+Python : myself  
+JavaScript : Soraefir and myself  
+Bash : Miomjon  
 
 © 2020 David Resin  
 This project is freely available under a GNU GPLv3 license.
