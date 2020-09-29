@@ -85,27 +85,27 @@
 ### Main page
 - FR : ""
 - EN : "Table of Contents (Click to access)"
-- DE :
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Teleportation"
-- DE :
+- DE : <br/></br>
 
 - FR : ""
 - EN : "To Hub"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "EPFL locations"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Unil locations"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Effects"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "OP-only Items"
@@ -124,11 +124,11 @@
 ### Other teleportation
 - FR : ""
 - EN : "Other teleports"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Pixel Art Area"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Alternate Builds"
@@ -137,15 +137,15 @@
 ### Effects
 - FR : ""
 - EN : "Effects (Click to toggle)"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Night Vision"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Super Speed"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Glowing"
@@ -154,11 +154,11 @@
 ### OP-only Items
 - FR : ""
 - EN : "Command Block"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Barrier Block"
-- DE : 
+- DE : <br/></br>
 
 - FR : ""
 - EN : "Debug Stick"
@@ -179,7 +179,7 @@
 ### Teleportation Control
 - FR : "Accès refusé : Cette zone est protégée."
 - EN : "Access denied : This is a restricted area."
-- DE : 
+- DE : <br/></br>
 
 - FR : "Zone indisponible"
 - EN : "Location unavailable"
@@ -198,7 +198,7 @@
 ### Night Vision
 - FR : "Vision nocturne activée"
 - EN : "Night vision ON"
-- DE : 
+- DE : <br/></br>
 
 - FR : "Vision nocturne désactivée"
 - EN : "Night vision OFF"
@@ -207,7 +207,7 @@
 ### Super Speed
 - FR : "Super-vitesse activée"
 - EN : "Super-speed ON"
-- DE : 
+- DE : <br/></br>
 
 - FR : "Super-vitesse désactivée"
 - EN : "Super-speed OFF"
@@ -216,7 +216,7 @@
 ### Glowing
 - FR : "Contour activé"
 - EN : "Glowing ON"
-- DE : 
+- DE : <br/></br>
 
 - FR : "Contour désactivé"
 - EN : "Glowing OFF"
