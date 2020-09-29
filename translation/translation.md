@@ -17,21 +17,20 @@
 - EN : "Info for builders : Please only build on red layouts laid by admins"
 - DE :
 
-### loc_tuto 3 (Caverne)
+### loc_tuto 3 (Cavern)
 - FR : "Projet lancé par ESN Lausanne le 13 mars 2020"
 - EN : "Project started by ESN Lausanne on March 13th, 2020"
 - DE :
 
-### loc_tuto 4 (Ecoles)
+### loc_tuto 4 (Schools)
 - FR : "Qui êtes-vous? ... pour activer un bouton"
 - EN : "Who are you? Press ... to activate buttons"
-- DE :
-
+- DE : <br/></br>
 - FR : "Vous pouvez maintenant continuer"
 - EN : "You may now proceed"
 - DE : 
 
-### loc_tuto 5 + 6
+### loc_tuto 5 + 6 (Teams)
 - FR : "Etes-vous dans une association, labo, etc?"
 - EN : "Are you part of an association or a lab?"
 - DE : 
@@ -75,17 +74,17 @@
 - EN : "Other associations"
 - DE : 
 
-### loc_tuto 7
+### loc_tuto 7 (Hall of Fame)
 - FR : "Il est temps de visiter le campus!"
 - EN : "It is now time to visit the campus!"
 - DE : 
 
-### loc_tuto 8
+### loc_tuto 8 (Teleporter Room)
 - FR : "Salle des Téléporteurs - Prenez ce Toolbook!"
 - EN : "Teleporter Room - Here, take this Toolbook!"
 - DE : 
 
-### loc_tuto 9
+### loc_tuto 9 (Campuses)
 - FR : "Bienvenue aux campus EPFL & Unil"
 - EN : "Welcome to the EPFL and Unil campuses"
 - DE : 
