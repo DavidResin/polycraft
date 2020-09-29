@@ -25,7 +25,7 @@
 ### loc_tuto 4 (Ecoles)
 - FR : "Qui êtes-vous? ... pour activer un bouton"
 - EN : "Who are you? Press ... to activate buttons"
-- DE :
+- DE : ""  
 
 - FR : "Vous pouvez maintenant continuer"
 - EN : "You may now proceed"
