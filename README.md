@@ -35,10 +35,14 @@ The campuses cover multiple square kilometers of land, which would be a dreadful
 ## Toolbook
 To facilitate the use of the different tools we coded for builders (preset teleporters, togglable player effects, ...), we wrote an in-game toolbook where players can trigger various actions by clicking text. The book is generated through a complex `give` command triggered in a command block.
 
+## Translation
+We want all info on the server to be available in French, English and German. We store all text here to simplify this task.
+
 # Credits
 Python and MC commands : myself  
 JavaScript : Soraefir and myself  
 Bash : Miomjon  
+Translations : MeepMeep and myself
 
 © 2020 David Resin  
 This project is freely available under a GNU GPLv3 license.
