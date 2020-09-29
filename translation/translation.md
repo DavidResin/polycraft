@@ -61,7 +61,6 @@
 - FR : "Bureaux et Laboratoires"
 - EN : "Offices & Laboratories"
 - DE : <br/></br>
-
 - FR : "Autres associations"
 - EN : "Other associations"
 - DE : 
