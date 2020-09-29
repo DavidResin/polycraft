@@ -33,42 +33,35 @@
 ### loc_tuto 5 + 6 (Teams)
 - FR : "Etes-vous dans une association, labo, etc?"
 - EN : "Are you part of an association or a lab?"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Vous pouvez maintenant continuer (vous pourrez revenir)"
 - EN : "You may now proceed (you can always come back)"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Nouvelle équipe : ..."
 - EN : "New team : ..."
-- DE : 
-
+- DE : <br/></br>
 - FR : "Mon association n'est pas là !"
 - EN : "My association isn't here !"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Demandez votre équipe sur \#help-and-feedback"
 - EN : "Ask for your team on \#help-and-feedback"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Pas de groupe ou association."
 - En : "No group or association."
-- DE : 
-
+- DE : <br/></br>
 - FR : "Associations de Sections (EPFL)"
 - EN : "EPFL Section Associations"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Associations de Facultés (Unil)"
 - EN : "Unil Faculty Associations"
-- DE : 
-
+- DE : <br/></br>
 - FR : "Commissions de l'AGEPoly"
 - EN : "AGEPoly Commissions"
 - DE : 
+<br/></br>
 - FR : "Bureaux et Laboratoires"
 - EN : "Offices & Laboratories"
-- DE : 
+- DE : <br/></br>
 
 - FR : "Autres associations"
 - EN : "Other associations"
