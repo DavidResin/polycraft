@@ -57,8 +57,7 @@
 - DE : <br/></br>
 - FR : "Commissions de l'AGEPoly"
 - EN : "AGEPoly Commissions"
-- DE : 
-<br/></br>
+- DE : <br/></br>
 - FR : "Bureaux et Laboratoires"
 - EN : "Offices & Laboratories"
 - DE : <br/></br>
