@@ -17,4 +17,44 @@
 - EN : "Info for builders : Please only build on red layouts laid by admins"
 - DE :
 
-...
+### loc_tuto 3
+
+### loc_tuto 4
+
+### loc_tuto 5 + 6
+
+### loc_tuto 7
+
+### loc_tuto 8
+
+### loc_tuto 9
+
+## Toolbook
+
+### Main page
+
+### EPFL teleportation
+
+### Unil teleportation
+
+### Other teleportation
+
+### Effects
+
+### OP-only Items
+
+## Others
+
+### Welcome
+
+### Gamemode
+
+### Access Control
+
+### Flight Restriction
+
+### Night Vision
+
+### Super Speed
+
+### Glowing
