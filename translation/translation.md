@@ -85,84 +85,84 @@
 ## Toolbook
 
 ### Main page
-- FR : ""
+- FR : "Table des matières (Cliquer pour accéder)"
 - EN : "Table of Contents (Click to access)"
 - DE :
 
-- FR : ""
+- FR : "Téléportation"
 - EN : "Teleportation"
 - DE :
 
-- FR : ""
+- FR : "Retour au Hub"
 - EN : "To Hub"
 - DE : 
 
-- FR : ""
+- FR : "Zones de l'EPFL"
 - EN : "EPFL locations"
 - DE : 
 
-- FR : ""
+- FR : "Zones de l'Unil"
 - EN : "Unil locations"
 - DE : 
 
-- FR : ""
+- FR : "Pouvoirs"
 - EN : "Effects"
 - DE : 
 
-- FR : ""
+- FR : "Equipement Admin"
 - EN : "OP-only Items"
 - DE : 
 
 ### EPFL teleportation
-- FR : ""
-- EN : "Teleportation EPFL (Click to teleport)"
+- FR : "Téléportation EPFL (Cliquer pour se TP)"
+- EN : "EPFL Teleportation (Click to teleport)"
 - DE : 
 
 ### Unil teleportation
-- FR : ""
-- EN : "Teleportation Unil (Click to teleport)"
+- FR : "Téléportation Unil (Cliquer pour se TP)"
+- EN : "Unil Teleportation (Click to teleport)"
 - DE : 
 
 ### Other teleportation
-- FR : ""
+- FR : "Autres zones"
 - EN : "Other teleports"
 - DE : 
 
-- FR : ""
+- FR : "Zone de Pixel Art"
 - EN : "Pixel Art Area"
 - DE : 
 
-- FR : ""
+- FR : "Constructions alternatives"
 - EN : "Alternate Builds"
 - DE : 
 
 ### Effects
-- FR : ""
+- FR : "Pouvoirs (Cliquer pour activer)"
 - EN : "Effects (Click to toggle)"
 - DE : 
 
-- FR : ""
+- FR : "Vision nocturne"
 - EN : "Night Vision"
 - DE : 
 
-- FR : ""
+- FR : "Super-vitesse"
 - EN : "Super Speed"
 - DE : 
 
-- FR : ""
+- FR : "Silhouette"
 - EN : "Glowing"
 - DE : 
 
 ### OP-only Items
-- FR : ""
+- FR : "Bloc de commande"
 - EN : "Command Block"
 - DE : 
 
-- FR : ""
+- FR : "Bloc barrière"
 - EN : "Barrier Block"
 - DE : 
 
-- FR : ""
+- FR : "Bâton de debug"
 - EN : "Debug Stick"
 - DE : 
 

@@ -18,7 +18,7 @@ const d2_round = (x)=>(Math.round(x*100)/100)
 dojo.connect(navigation._map, 'onClick', function (e) {
 	var pp = {X:d2_round((((e.mapPoint.x % 10000)-h)/m)),
 			  Z:d2_round((((e.mapPoint.y % 10000)-g)/n))};
-	console.log(pp)
+	console.log(pp);
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("POST", "https://localhost:8000/");
