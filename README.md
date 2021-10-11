@@ -45,7 +45,7 @@ We want all info on the server to be available in French, English and German. We
 Python and MC commands : myself  
 JavaScript : Soraefir and myself  
 Bash : Miomjon  
-Prototyping : Fehross and myself
+Prototyping : Fehross and myself  
 Translations : MeepMeep and myself
 
 © 2020-2021 David Resin  
