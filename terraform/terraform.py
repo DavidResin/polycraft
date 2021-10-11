@@ -50,4 +50,4 @@ def fill_safe(x, z):
 def test():
 	for i in range(64):
 		for j in range(64):
-			cmd.stdin.write(("execute at MCRaisin run fill ~" + str(-32 + i) + " " + str(arr[j, i]) + " ~" + str(-32 + j) + " ~"+str(-32+i)+" " + str(arr[j, i]) + " ~"+str(-32+j)+" gold_block\n").encode())
+			cmd.stdin.write(("execute at MCRaisin run fill ~" + str(-32 + i) + " " + str(arr[j, i]) + " ~" + str(-32 + j) + " ~" + str(-32 + i) + " " + str(arr[j, i]) + " ~" + str(-32 + j) + " gold_block\n").encode())
