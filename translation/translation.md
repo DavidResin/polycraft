@@ -25,7 +25,8 @@
 ### loc_tuto 4 (Schools)
 - FR : "Qui êtes-vous? ... pour activer un bouton"
 - EN : "Who are you? Press ... to activate buttons"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Vous pouvez maintenant continuer"
 - EN : "You may now proceed"
 - DE : 
@@ -33,35 +34,43 @@
 ### loc_tuto 5 + 6 (Teams)
 - FR : "Etes-vous dans une association, labo, etc?"
 - EN : "Are you part of an association or a lab?"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Vous pouvez maintenant continuer (vous pourrez revenir)"
 - EN : "You may now proceed (you can always come back)"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Nouvelle équipe : ..."
 - EN : "New team : ..."
-- DE : <br/></br>
+- DE : 
+
 - FR : "Mon association n'est pas là !"
 - EN : "My association isn't here !"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Demandez votre équipe sur \#help-and-feedback"
 - EN : "Ask for your team on \#help-and-feedback"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Pas de groupe ou association."
 - En : "No group or association."
-- DE : <br/></br>
+- DE : 
+
 - FR : "Associations de Sections (EPFL)"
 - EN : "EPFL Section Associations"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Associations de Facultés (Unil)"
 - EN : "Unil Faculty Associations"
-- DE : <br/></br>
+- DE : 
+
 - FR : "Commissions de l'AGEPoly"
 - EN : "AGEPoly Commissions"
 - DE : 
-<br/></br>
+
 - FR : "Bureaux et Laboratoires"
 - EN : "Offices & Laboratories"
-- DE : <br/></br>
+- DE : 
 
 - FR : "Autres associations"
 - EN : "Other associations"

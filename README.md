@@ -7,6 +7,9 @@ This repository is a collection of all the tools that were coded to help build P
 ## Chunks
 As hundreds of players go all over the place and generate useless chunks that take up growing space with daily backups, this script was made to limit the growth of the map files by visualizing what chunk file was necessary or not.
 
+## Heightmap
+The terraform script was quickly coded and was complex to run. This is a work-in-progress bringing massive optimizations to the heightmap generation pipeline.
+
 ## Hole
 A modification of the terraform script used to patch small holes in the landscape. Less efficient as it runs client-side, but good enough for average-sized surfaces.
 
@@ -42,7 +45,8 @@ We want all info on the server to be available in French, English and German. We
 Python and MC commands : myself  
 JavaScript : Soraefir and myself  
 Bash : Miomjon  
+Prototyping : Fehross and myself  
 Translations : MeepMeep and myself
 
-© 2020 David Resin  
+© 2020-2021 David Resin  
 This project is freely available under a GNU GPLv3 license.
