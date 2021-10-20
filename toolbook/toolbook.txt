@@ -8,7 +8,9 @@
 			{"text":"- To Hub","clickEvent":{"action":"run_command","value":"/trigger tp_dest set 1"}},{"text":"\\n"},{"text":"  ","color":"red"},
 			{"text":"- EPFL locations","color":"red","clickEvent":{"action":"change_page","value":2}},{"text":"\\n","color":"reset"},{"text":"  ","color":"blue"},
 			{"text":"- Unil locations","color":"blue","clickEvent":{"action":"change_page","value":3}},{"text":"\\n  ","color":"reset"},
-			{"text":"- Other locations","clickEvent":{"action":"change_page","value":"4"}},{"text":"\\n\\n"},{"text":"# Effects","clickEvent":{"action":"change_page","value":5}},{"text":"\\n"},{"text":"# OP-only Items","color":"dark_purple","clickEvent":{"action":"change_page","value":6}}
+			{"text":"- Other locations","clickEvent":{"action":"change_page","value":"4"}},{"text":"\\n\\n"},
+			{"text":"# Effects","clickEvent":{"action":"change_page","value":5}},{"text":"\\n"},
+			{"text":"# OP-only Items","color":"dark_purple","clickEvent":{"action":"change_page","value":6}}
 		]','
 		["",
 			{"text":"==== ","color":"red"},{"text":""},{"text":"P","bold":true,"color":"red"},{"text":"o","bold":true,"color":"#e63f56"},{"text":"l","bold":true,"color":"#ce3f6e"},{"text":"y","bold":true,"color":"#b63f86"},{"text":"C","bold":true,"color":"#9e3f9e"},{"text":"r","bold":true,"color":"#863fb6"},{"text":"a","bold":true,"color":"#6e3fce"},{"text":"f","bold":true,"color":"#563fe6"},{"text":"t","bold":true,"color":"blue"},{"text":" ====","color":"blue"},{"text":"\\n\\n","color":"reset"},
