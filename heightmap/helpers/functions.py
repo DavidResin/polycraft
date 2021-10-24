@@ -1,0 +1,437 @@
+import numpy as np
+import pyperclip as pc
+
+from itertools import product
+from scipy.ndimage.measurements import label
+
+def make_affine(x0_old, x0_new, x1_old, x1_new):
+    m = (x0_new - x1_new) / (x0_old - x1_old)
+    h = (x1_new * x0_old - x0_new * x1_old) / (x0_old - x1_old)
+    
+    return m, h
+
+def make_affine_matrix_1d(m, h):
+    return np.array([
+        [m, h],
+        [0, 1]
+    ])
+
+def make_affine_matrix_2d(mX, mZ, hX, hZ):
+    return np.array([
+        [mX, 0, hX],
+        [0, mZ, hZ],
+        [0,  0,  1]
+    ])
+
+def convert_points(points, mat):
+    points = np.c_[ points, points.shape[0]]
+    return np.matmul(mat, points)
+
+def getV(rasters, lon, lat):
+    r = find_raster(rasters, lon, lat)
+    
+    if r is None:
+        return None
+    
+    return r.value_at_coords(lon, lat)
+
+def mapTopLeft(mX, mZ):
+    return mX * 128 - 64, mZ * 128 - 64
+
+def fits_bb(raster, lon, lat):
+    bb = raster.bounds
+    lonFit = bb.left <= lon <= bb.right
+    latFit = bb.bottom <= lat <= bb.top
+    return lonFit, latFit
+
+def find_raster(rasters, lon, lat):
+    for r in rasters:
+        if sum(fits_bb(r, lon, lat)) == 2:
+            return r
+        
+    return None
+
+def xzTrans(m2c, x, z):
+    trans = np.matmul(m2c, [x, z, 1])
+    return tuple(trans[:2])
+    
+def raster_ranges(rasters, m2c, c2m, xS, zS, xE, zE):
+    points = [(xS, zS)]
+    ranges = []
+    lonEnd, latEnd = xzTrans(m2c, xE, zE)
+    
+    while points:
+        x0, z0 = points.pop()
+        lon0, lat0 = xzTrans(m2c, x0, z0)
+        
+        raster = find_raster(rasters, lon0, lat0)
+        
+        if raster is None:
+            raise ValueError("A raster is missing for longitude", lon, "and latitude", lat)
+            
+        lonFit, latFit = fits_bb(raster, lonEnd, latEnd)
+        xB, zB = xzTrans(c2m, raster.bounds.right, raster.bounds.bottom)
+        xB, zB = int(xB // 1), int(zB // 1)
+        x1 = xE if lonFit else xB
+        z1 = zE if latFit else zB
+        
+        ranges.append((raster, x0, z0, x1, z1))
+        
+        if not lonFit:
+            points.append((xB + 1, z0))
+            
+        if not latFit and x0 == xS:
+            points.append((x0, zB + 1))
+            
+    return ranges
+            
+def gen_heightmap(rasters, m2c, c2m, v2y, xS, zS):
+    xE, zE = xS + 127, zS + 127
+    ranges = raster_ranges(rasters, m2c, c2m, xS, zS, xE, zE)
+    ret = np.zeros((128, 128))
+    
+    xFixes, zFixes = [], []
+    
+    for raster, x0, z0, x1, z1 in ranges:
+        w = x1 - x0 + 1
+        h = z1 - z0 + 1
+        coords = np.array(list(product(range(w), range(h)))).T
+        ones = np.ones((1, coords.shape[1]))
+        matrix = np.r_[coords, ones]
+        matrix[0] = matrix[0] + x0
+        matrix[1] = matrix[1] + z0
+        real_coords = np.matmul(m2c, matrix)[:2].T
+        heights = raster.interp_points(pts=real_coords)
+        
+        sub_ret = np.zeros((w, h))
+        sub_ret[tuple(coords)] = heights
+        xShift, zShift = x0 - xS, z0 - zS
+        ret[xShift:xShift + w, zShift:zShift + h] = sub_ret
+        
+        if x0 != xS:
+            xFixes.append(x0)
+            
+        if z0 != zS:
+            zFixes.append(z0)
+            
+    for fix in xFixes:
+        x = fix - xS - 1
+        ret[x, :] = (ret[x + 1, :] + ret[x - 1, :]) / 2
+        
+    for fix in zFixes:
+        z = fix - zS - 1
+        ret[:, z] = (ret[:, z + 1] + ret[:, z - 1]) / 2
+        
+    coords = np.array(list(product(range(128), range(128)))).T
+    retF = np.array(ret.flatten())
+    matrix = np.c_[retF.T, np.ones((retF.shape[0]))].T
+    matrix = np.matmul(v2y, matrix)
+    ret[tuple(coords)] = matrix[0]
+    
+    return np.around(ret).T.astype(int)
+
+def gen_fill(strings, edges, Y, block0, mode=None, block1=None):
+    h, w, X0, Z0 = edges
+    X1 = X0 + h
+    Z1 = Z0 + w
+    
+    if mode == "keep":
+        pass
+    elif mode == "replace":
+        if block1 is None:
+            raise ValueError
+    elif mode is None:    
+        mode = ""
+    else:
+        raise ValueError
+        
+    if block1 is None:
+        block1 = ""
+    else:
+        if mode != "replace":
+            raise ValueError
+        
+    cmd = strings["fill_command"].format(X0, Y, Z0, X1, Y, Z1, block0, mode, block1).strip()
+    return strings["template"].format(cmd)
+            
+def gen_clone(strings, edges, Y0, yShift, mode, block=None):
+    h, w, X0, Z0 = edges
+    X1 = X0 + h
+    Z1 = Z0 + w
+    Y1 = Y0 + yShift
+    
+    if mode == "replace" or mode == "masked":
+        pass
+    elif mode == "filtered":
+        if block is None:
+            raise ValueError
+    else:
+        raise ValueError
+        
+    if block is None:
+        block = ""
+    else:
+        if mode != "filtered":
+            raise ValueError
+        
+    cmd = strings["clone_command"].format(X0, Y0, Z0, X1, Y0, Z1, X0, Y1, Z0, mode, block).strip()
+    return strings["template"].format(cmd)
+
+def package_commands(cmds, strings):
+    max_chars = 32500
+    prefix = strings["prefix"]
+    suffix = strings["suffix"]
+    
+    def_len = len(prefix) + len(suffix)
+    avail_space = max_chars - def_len
+    lens = [len(cmd) + 1 for cmd in cmds]
+    
+    idx = 0
+    batches = []
+    
+    while lens:
+        idx = (np.cumsum(lens) <= avail_space).argmin(0)
+        
+        if idx == 0:
+            idx = len(cmds)
+            
+        string = prefix + ",".join(cmds[:idx]) + suffix
+        batches.append(string)
+        lens = lens[idx:]
+        cmds = cmds[idx:]
+        
+    for i, b in enumerate(batches):
+        input("Press Enter to store the next command in your clipboard...")
+        pc.copy(b)
+        print(f"Batch {i + 1} of {len(batches)}")
+        
+def thicken_old(multilayer):
+    ret = np.zeros(multilayer.shape, dtype=bool)
+    mem = np.zeros(multilayer.shape[:2], dtype=bool)
+    
+    for z in range(multilayer.shape[2]):
+        ret[..., z] = (multilayer[..., z] > 0) | mem
+        mem = ret[..., z]
+        
+    return ret[..., ::-1]
+
+def thicken(arr):
+    bottom = np.min(arr)
+    top = np.max(arr)
+    depth = top - bottom + 1
+    ret = np.zeros(arr.shape + (depth,), dtype=bool)
+
+    for d in range(depth):
+        ret[..., d] = (arr == bottom + d)
+
+    return ret, bottom, depth
+        
+def split_layer(layer):
+    structure = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
+    labeled, N = label(layer, structure)
+    background_label = None if N == 1 else labeled[tuple(np.column_stack(np.where(layer == 0))[0])]
+    ret = []
+    
+    for idx in range(1, N + 1):
+        if background_label is None:
+            idx = layer[0, 0]
+        elif background_label == idx:
+            continue
+            
+        component = (labeled == idx)
+        j0, j1 = tuple(np.argwhere(np.any(component, axis=0))[[0, -1]].flatten().tolist())
+        i0, i1 = tuple(np.argwhere(np.any(component, axis=1))[[0, -1]].flatten().tolist())
+        
+        ret.append((i1 - i0, j1 - j0, i0, j0))
+        
+    return ret
+
+def tesselate_layer(layer, h0, w0, i0, j0, xShift, zShift):
+    #Trivial case
+    if len(np.unique(layer)) == 1:
+        return [(h0, w0, i0, j0)]
+    
+    # Slice out the wanted part
+    sub_layer = layer[i0:i0 + h0 + 1, j0:j0 + w0 + 1]
+    
+    # Initialize working arrays
+    possible =   gen_tesseract_opt(sub_layer)
+    selected =   np.zeros(possible.shape)
+    mask =       gen_mask(possible)
+    coords_gen = gen_coords_generator(possible)
+
+    # Iteratively select the best fills
+    while select_next_fill(selected, possible, coords_gen, mask, sub_layer):
+        pass
+
+    # Generate scores
+    scores = gen_scores_post(selected)
+
+    # Remove redundant fills
+    sanitize(selected, scores)
+
+    # Shrink fills to their minimum useful size
+    shrink(selected, scores)
+    
+    return [(h, w, i + i0 + xShift, j + j0 + zShift) for h, w, i, j in np.column_stack(selected.nonzero()).tolist()]
+
+def cubify(arr, strings, shift=(0, 0)):
+    multilayer, Y0, depth = thicken(arr.T)
+    xShift, zShift = shift
+    cmds = []
+    
+    for y in range(depth):
+        layer = multilayer[..., y]
+        sublayers = split_layer(layer)
+        edges = []
+        
+        for (h, w, i, j) in sublayers:
+            edges += tesselate_layer(layer, h, w, i, j, xShift, zShift)
+            
+        cmds += [gen_fill(strings, elem, Y0 + y, "diamond_block", mode="replace", block1="air") for elem in edges]
+    
+    package_commands(cmds, strings)
+    
+def gen_border(arr):
+    h, w = arr.shape
+    edge = np.ones((h, w), dtype=bool)
+    edge[1:h-1,1:w-1] = 0
+    
+    dirs = [round(np.sin(i * np.pi / 2)) for i in range(4)]
+    empties = arr == 0
+    mem = empties.copy()
+    
+    for roll in zip(dirs, np.roll(dirs, -1)):
+        mem += np.roll(empties, roll, axis=(0, 1))
+        
+    return (mem + edge) * (arr > 0)
+
+def gen_bound_mask(arr):
+    h, w = arr.shape
+    ret = np.zeros((h, w, h, w), dtype=bool)
+    
+    for i, j in np.column_stack((1 - arr).nonzero()):
+        set_block_at(ret, i, j, True)
+        
+    return ret
+
+# More performant than gen_tesseract(np.ones(tsrct.shape[:2]))
+def gen_mask(tsrct):
+    h, w = tsrct.shape[:2]
+    mask = np.ones(tsrct.shape, dtype=bool)
+
+    for i in range(h):
+        mask[i, :, h - i:h, :] = 0
+
+    for j in range(w):
+        mask[:, j, :, w - j:w] = 0
+
+    return mask
+
+def gen_tesseract_opt_sub(arr, true_if_and):
+    h, w = arr.shape
+    ret = np.zeros((h, w, h, w), dtype=bool)
+    ret[0, 0] = arr > 0
+
+    for i in range(1, h):
+        curr = ret[i - 1, 0]
+        roll = np.roll(curr, -1, axis=0)
+        roll[-1] = False
+        ret[i, 0] = curr & roll if true_if_and else curr | roll
+
+    for j in range(1, w):
+        curr = ret[:, j - 1]
+        roll = np.roll(curr, -1, axis=2)
+        roll[:, :, -1] = False
+        ret[:, j] = curr & roll if true_if_and else curr | roll
+        
+    return ret
+
+def gen_tesseract_opt(arr, carve=True):
+    border = gen_border(arr)
+    ret = gen_tesseract_opt_sub(arr, True)
+    
+    if carve:
+        no_fillers = gen_tesseract_opt_sub(border, False)
+        ret = ret & no_fillers
+        
+    return ret
+
+def modify_fill_at(tsrct, scores, h, w, i, j, true_if_add):
+    tsrct[h, w, i, j] = true_if_add
+    scores[i:i + h + 1, j:j + w + 1] -= -1 if true_if_add else 1
+
+def remove_fill_at(tsrct, scores, h, w, i, j):
+    modify_fill_at(tsrct, scores, h, w, i, j, False)
+    
+def add_fill_at(tsrct, scores, h, w, i, j):
+    modify_fill_at(tsrct, scores, h, w, i, j, True)
+    
+def yield_coords(possible, gen):
+    try:
+        while True:
+            h, w, i, j = next(gen)
+            
+            if possible[h, w, i, j]:
+                return h, w, i, j
+    except StopIteration:
+        return None
+
+def gen_coords_generator(possible):
+    h, w = possible.shape[:2]
+    order = sorted(np.column_stack(possible.nonzero()), key=lambda elem: (-max(elem[:2]), -elem[0], -elem[1]))
+    
+    for h0, w0, i0, j0 in order:
+        yield h0, w0, i0, j0
+    
+def select_next_fill(selected, possible, gen, mask, arr):
+    H, W = arr.shape
+    coords = yield_coords(possible, gen)
+    
+    if coords is None:
+        return False
+    
+    h, w, i, j = coords
+    selected[h, w, i, j] = True
+    
+    slc = np.index_exp[:h + 1, :w + 1, i:i + h + 1, j:j + w + 1:]
+    sub_possible = possible[slc]
+    sub_mask = mask[H - h - 1:, W - w - 1:, :h + 1, :w + 1]
+    possible[slc] = sub_possible & (1 - (sub_mask & sub_possible))
+    
+    return True
+    
+def gen_scores_post(selected):
+    ret = np.zeros(selected.shape[:2], dtype=np.int16)
+    
+    for h, w, i, j in np.column_stack(selected.nonzero()).tolist():
+        slc = np.index_exp[i:i + h + 1, j:j + w + 1]
+        ret[slc] = ret[slc] + 1
+        
+    return ret
+
+def sanitize(selected, scores):
+    for h, w, i, j in sorted(np.column_stack(selected.nonzero()), key=lambda t: (-np.prod(t[:2]), -t[0])):
+        if np.all(scores[i:i + h + 1, j:j + w + 1] > 1):
+            remove_fill_at(selected, scores, h, w, i, j)
+            
+def shrink(selected, scores):
+    for h, w, i, j in sorted(np.column_stack(selected.nonzero()), key=lambda t: (-np.prod(t[:2]), -t[0])):
+        vals = scores[i:i + h + 1, j:j + w + 1] == 1
+        aggrI = np.where(np.any(vals, axis=1))[0]
+        aggrJ = np.where(np.any(vals, axis=0))[0]
+
+        if len(aggrI) + len(aggrJ) > 0:
+            iMin, iMax = aggrI[0], aggrI[-1]
+            jMin, jMax = aggrJ[0], aggrJ[-1]
+            newH = iMax - iMin
+            newW = jMax - jMin
+
+            if newH < h or newW < w:
+                remove_fill_at(selected, scores, h, w, i, j)
+                add_fill_at(selected, scores, newH, newW, i + iMin, j + jMin)
+                
+def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
+    xS, zS = mapTopLeft(xMap, zMap)
+    arr = gen_heightmap(rasters, m2c, c2m, v2y, xS, zS)
+    cubify(arr, strings, shift=(xS, zS))
