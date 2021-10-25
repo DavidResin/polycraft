@@ -348,10 +348,10 @@ def gen_tesseract_opt_sub(arr, true_if_and):
     return ret
 
 def gen_tesseract_opt(arr, carve=True):
-    border = gen_border(arr)
     ret = gen_tesseract_opt_sub(arr, True)
     
     if carve:
+        border = gen_border(arr)
         no_fillers = gen_tesseract_opt_sub(border, False)
         ret = ret & no_fillers
         
