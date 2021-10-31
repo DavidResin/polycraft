@@ -277,93 +277,6 @@ def tesselate_layer(sub_layer, i0, j0):
     shrink(selected, scores)
     
     return [(h, w, i + i0, j + j0) for h, w, i, j in np.column_stack(selected.nonzero()).tolist()]
-
-old = """        
-# Splits a single layer into multiple sublayers of individual components
-def split_layer_old(layer):
-    structure = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
-    labeled, N = label(layer, structure)
-    background_label = None if N == 1 else labeled[tuple(np.column_stack(np.where(layer == 0))[0])]
-    ret = []
-    
-    for idx in range(1, N + 1):
-        if background_label is None:
-            idx = layer[0, 0]
-        elif background_label == idx:
-            continue
-            
-        component = (labeled == idx)
-        j0, j1 = tuple(np.argwhere(np.any(component, axis=0))[[0, -1]].flatten().tolist())
-        i0, i1 = tuple(np.argwhere(np.any(component, axis=1))[[0, -1]].flatten().tolist())
-        
-        ret.append((i1 - i0, j1 - j0, i0, j0))
-        
-    return ret
-    
-def tesselate_layer_old(layer, h0, w0, i0, j0, xShift, zShift):
-    # Trivial case
-    if len(np.unique(layer)) == 1:
-        return [(h0, w0, i0, j0)]
-    
-    # Slice out the wanted part
-    sub_layer = layer[i0:i0 + h0 + 1, j0:j0 + w0 + 1]
-    
-    # Initialize working arrays
-    possible =   gen_tesseract(sub_layer)
-    selected =   np.zeros(possible.shape)
-    mask =       gen_mask(possible)
-    coords_gen = gen_coords_generator(possible)
-
-    # Iteratively select the best fills
-    while select_next_fill(selected, possible, coords_gen, mask, sub_layer):
-        pass
-
-    # Generate scores
-    scores = gen_scores_post(selected)
-
-    # Remove redundant fills
-    sanitize(selected, scores)
-
-    # Shrink fills to their minimum useful size
-    shrink(selected, scores)
-    
-    return [(h, w, i + i0 + xShift, j + j0 + zShift) for h, w, i, j in np.column_stack(selected.nonzero()).tolist()]
-    
-def cubify_old(arr, strings, shift=(0, 0)):
-    multilayer, Y0, depth = thicken(arr.T)
-    xShift, zShift = shift
-    cmds = []
-    
-    for y in range(depth):
-        layer = multilayer[..., y]
-        sublayers = split_layer_old(layer)
-        edges = []
-        
-        for (h, w, i, j) in sublayers:
-            edges += tesselate_layer_old(layer, h, w, i, j, xShift, zShift)
-            
-        cmds += [gen_fill(strings, elem, Y0 + y, "diamond_block", mode="keep") for elem in edges]
-    
-    package_commands(cmds, strings)
-
-# Turns a Minecraft heightmap into a set of individual commands yielded as batches
-def cubify(arr, strings, shift=(0, 0)):
-    multilayer, Y0, depth = thicken(arr.T)
-    xShift, zShift = shift
-    cmds = []
-    
-    for y in range(depth):
-        layer = multilayer[..., y]
-        sublayers = split_layer(layer)
-        edges = []
-        
-        for (sub_layer, i, j) in sublayers:
-            edges += tesselate_layer(sub_layer, i, j, xShift, zShift)
-            
-        cmds += [gen_fill(strings, elem, Y0 + y, "diamond_block", mode="keep") for elem in edges]
-    
-    package_commands(cmds, strings)
-"""
     
 # Turns a Minecraft heightmap into a set of individual commands yielded as batches
 def cubify(arr, strings, shift=(0, 0)):
@@ -527,14 +440,6 @@ def shrink(selected, scores):
             if newH < h or newW < w:
                 remove_fill_at(selected, scores, h, w, i, j)
                 add_fill_at(selected, scores, newH, newW, i + iMin, j + jMin)
-
-old = """
-# Yields commands for a given map coordinate
-def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
-    xS, zS = mapTopLeft(xMap, zMap)
-    arr = gen_heightmap(rasters, m2c, c2m, v2y, xS, zS)
-    cubify(arr, strings, shift=(xS, zS))
-"""
     
 # Yields commands for a given map coordinate
 def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
