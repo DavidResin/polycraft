@@ -436,10 +436,10 @@ def gen_tesseract_sub(arr, true_if_and):
 
 # Generates a tesseract for a given array, and ignores values that do not touch an edge if carve is set to True
 def gen_tesseract(arr, carve=True):
-    border = gen_border(arr)
     ret = gen_tesseract_sub(arr, True)
     
     if carve:
+        border = gen_border(arr)
         no_fillers = gen_tesseract_sub(border, False)
         ret = ret & no_fillers
         
@@ -540,5 +540,9 @@ def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
 def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
     xS, zS = mapTopLeft(xMap, zMap)
     arr = gen_heightmap(rasters, m2c, c2m, v2y, xS, zS)
+<<<<<<< HEAD
     cmds, Y = cubify(arr, strings, shift=(xS, zS))
     save_range((xMap, zMap), cmds, Y)
+=======
+    cubify(arr, strings, shift=(xS, zS))
+>>>>>>> 9c21258383524f52cdab824da287edc843ad4146
