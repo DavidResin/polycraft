@@ -233,7 +233,7 @@ def thicken(arr):
 def split_layer(layer):
     structure = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
     labeled, N = label(layer, structure)
-    background_label = None if N == 1 else labeled[tuple(np.column_stack(np.where(layer == 0))[0])]
+    background_label = None if N == 0 else labeled[tuple(np.column_stack(np.where(layer == 0))[0])]
     ret = []
     
     for idx in range(1, N + 1):
@@ -251,7 +251,7 @@ def split_layer(layer):
     return ret
 
 # Finds a near-optimal rectangular tiling of a layer
-def tesselate_layer(sub_layer, i0, j0, xShift, zShift):
+def tesselate_layer(sub_layer, i0, j0):
     # Trivial case
     if len(np.unique(sub_layer)) == 1:
         h0, w0 = sub_layer.shape
@@ -276,7 +276,7 @@ def tesselate_layer(sub_layer, i0, j0, xShift, zShift):
     # Shrink fills to their minimum useful size
     shrink(selected, scores)
     
-    return [(h, w, i + i0 + xShift, j + j0 + zShift) for h, w, i, j in np.column_stack(selected.nonzero()).tolist()]
+    return [(h, w, i + i0, j + j0) for h, w, i, j in np.column_stack(selected.nonzero()).tolist()]
 
 old = """        
 # Splits a single layer into multiple sublayers of individual components
@@ -377,7 +377,7 @@ def cubify(arr, strings, shift=(0, 0)):
         edges = []
         
         for (sub_layer, i, j) in sublayers:
-            edges += tesselate_layer(sub_layer, i, j, xShift, zShift)
+            edges += tesselate_layer(sub_layer, i + xShift, j + zShift)
             
         cmds += [gen_fill(strings, elem, Y0 + y, "diamond_block", mode="keep") for elem in edges]
     
@@ -540,9 +540,4 @@ def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
 def yield_map(rasters, strings, m2c, c2m, v2y, xMap, zMap):
     xS, zS = mapTopLeft(xMap, zMap)
     arr = gen_heightmap(rasters, m2c, c2m, v2y, xS, zS)
-<<<<<<< HEAD
-    cmds, Y = cubify(arr, strings, shift=(xS, zS))
-    save_range((xMap, zMap), cmds, Y)
-=======
     cubify(arr, strings, shift=(xS, zS))
->>>>>>> 9c21258383524f52cdab824da287edc843ad4146
