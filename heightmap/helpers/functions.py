@@ -24,11 +24,6 @@ def make_affine_matrix(ms, hs):
 
     return np.hstack([M, H])
 
-# Transforms a whole set of points with a given matrix
-def convert_points(points, mat):
-    points = np.c_[ points, points.shape[0]]
-    return np.matmul(mat, points)
-
 # Returns the altitude of a point defined by its latitude and longitude
 def getV(rasters, lon, lat):
     r = find_raster(rasters, lon, lat)
@@ -282,7 +277,13 @@ def tesselate_layer(sub_layer, i0, j0):
 def cubify(arr, strings, shift=(0, 0)):
     multilayer, Y0, depth = thicken(arr.T)
     xShift, zShift = shift
-    cmds = []
+    
+    to_wipe = [
+        "grass_block",
+        "gold_block"
+    ]
+    
+    cmds = [gen_fill(strings, (127, 127, xShift, zShift), Y=y, block0="air", mode="replace", block1=block) for y in range(Y0 - 1, Y0 + depth + 1) for block in to_wipe]
     
     for y in range(depth):
         layer = multilayer[..., y]
