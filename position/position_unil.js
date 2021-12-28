@@ -22,8 +22,10 @@ dojo.connect(navigation._map, 'onClick', function (e) {
 	var pp = {X:d2_round((((e.mapPoint.x % 10000)-h)/m)),
 			  Z:d2_round((((e.mapPoint.y % 10000)-g)/n))};
 	console.log(pp);
-    console.log({xLen: Math.round(100 * (Math.abs(pp["X"] - xOld))) / 100, 
-                zLen: Math.round(100 * (Math.abs(pp["Z"] - zOld))) / 100});
+
+    var xLen = pp["X"] - xOld;
+    var zLen = pp["Z"] - zOld;
+    console.log(d2_round(Math.sqrt(Math.pow(xLen, 2) + Math.pow(zLen, 2))));
     xOld = pp["X"];
     zOld = pp["Z"];
 });
