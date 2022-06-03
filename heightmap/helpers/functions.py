@@ -303,7 +303,7 @@ def cubify(arr, strings, shift=(0, 0)):
 def gen_border(arr):
     h, w = arr.shape
     edge = np.ones((h, w), dtype=bool)
-    edge[1:h-1,1:w-1] = 0
+    edge[1:h - 1, 1:w - 1] = 0
     
     dirs = [round(np.sin(i * np.pi / 2)) for i in range(4)]
     empties = arr == 0
